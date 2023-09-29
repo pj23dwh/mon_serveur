@@ -1,9 +1,9 @@
 <?php
 
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "citeam23";
-$dbname = "siteweb";
+$dbhost = "hostname";
+$dbuser = "username";
+$dbpass = "password";
+$dbname = "databasename";
 
 if(!$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))
 {
