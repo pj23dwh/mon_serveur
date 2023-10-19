@@ -7,6 +7,11 @@ include("/var/www/html/login/functions.php");
 
 $user_data = check_login($con);
 
+if ($user_data['id'] == "")
+{
+    header("Location: ../index.php");
+    die;
+}
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['delete_account'])) 
@@ -46,26 +51,27 @@ if (isset($_POST['delete_account']))
 
 <body>
 <a href="index.php">Retour à l'accueil</a>
-
+<div class = "account">
 <h1>Modifier le compte</h1>
 <p>Bienvenue <?php echo $user_data['user_name']; ?> !</p>
 
 <form method="post">
-    <label for="new_username">Nouveau nom d'utilisateur:</label>
+    <label for="new_username">Nouveau nom d'utilisateur:</label> <br>
     <input type="text" id="new_username" name="new_username" value="<?php echo $user_data['user_name']; ?>" required><br><br>
 
-    <label for="new_password">Nouveau mot de passe: </label>
+    <label for="new_password">Nouveau mot de passe: </label><br>
     <input type="password" id="new_password" name="new_password" required><br><br>
 
-    <input type="submit" value="Enregistrer les modifications"><br><br>
+    <input class = "button" type="submit" value="Enregistrer les modifications"><br><br>
 </form>
 
 
 
 
 <form method="post">
-    <input type="submit"  name="delete_account" value="Supprimer mon compte">
+    <input class = "button" type="submit"  name="delete_account" value="Supprimer mon compte">
 </form>
+</div>
 
 </body>
 </html>

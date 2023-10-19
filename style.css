@@ -1,52 +1,116 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background-color: #fff;
   margin: 0;
   padding: 0;
   }
   
 h1 {
   color: #333;
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 3em;  
+  margin-bottom: 1em;
+  text-align: center;
   }
   
 p {
-  color: #666;
-  line-height: 1.5;
+  color: #000000;
+  line-height: 1.5em;
   }
   
-a {
+a { /* Lien hypertexte */
   color: #007bff;
   text-decoration: none;
   }
 
+a:hover {
+color: #044781;
+transition: 0.1s;
+}
 
-#login {
+
+.login {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-
-#box {
-  background-color: #ff0000;
-  border: 10px solid #ff0000;
-  padding: 10px;
-  margin-bottom: 20px;
-  }
-
-#button {
+.button {
   display: inline-block;
-  background-color: #007bff;
+  background-color: #0088ff;
   color: #fff;
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 4px;
+  margin : auto;
   }
 
-#button:hover {
-  background-color: #0056b3;
-  }
+.button:hover {
+  background-color: #044781;
+  transition: background-color 0.3s ease;
+}
+
+
   
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+
+
+/* PRODUCT: */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap; /* Passage des produits à la ligne lorsqu'ils n'ont plus d'espace sur la ligne actuelle */
+  gap: 20px; /* Espace entre les produits */
+  padding: 20px; /* Marge intérieure pour les produits */
+  justify-content: center; /* Centrer les produits horizontalement */
+}
+
+/* REF: htcshop.ch */
+.product {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.product img {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 10px auto;
+  display: block;
+}
+
+.product h3 {
+  font-size: 24px;
+  color: #333;
+}
+
+.product p {
+  font-size: 16px;
+  color: #000000;
+}
+
+
+/* HEADER: */
+header {
+  background-color: #ffffff; /* Couleur de fond de l'en-tête */
+  color: #fff; /* Couleur du texte de l'en-tête */
+  padding: 20px; /* Espace intérieur de l'en-tête */
+  display: flex; /* Utilisation de Flexbox pour aligner les éléments horizontalement */
+  justify-content: space-between; /* Aligner les éléments à gauche et à droite */
+  align-items: center; /* Aligner les éléments verticalement au centre */
+}
+
+.logo img {
+  max-width: 150px; /* Limite la largeur du logo */
+}
