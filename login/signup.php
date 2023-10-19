@@ -40,10 +40,10 @@ session_start();
                     if ($result && mysqli_num_rows($result) > 0) # verification de le username n'est pas déjà pris 
                     { 
                         echo '<p style="color: red; font-size: 17px;">Ce nom d\'utilisateur est déjà pris !</p>';
-                    } else {
+                    } 
+                    else {
                         
-                        #$user_id = random_num(20);
-                        $query = "INSERT INTO users (user_id, user_name, password) VALUES ('$user_id', '$user_name', '$password')";
+                        $query = "INSERT INTO users (user_name, password) VALUES ('$user_name', '$password')";
                         mysqli_query($con, $query); # Sauvegarde des résultats dans la base de donnée
              
                         header("Location: login.php");
