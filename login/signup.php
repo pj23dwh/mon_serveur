@@ -1,10 +1,7 @@
 <?php
 session_start();
     include("/var/www/html/login/connexion.php");
-    include("/var/www/html/login/functions.php");
-
-    
-
+    include("/var/www/html/login/functions.php");    
 ?>
 
 <html>
@@ -34,21 +31,30 @@ session_start();
         
                 if (!empty($user_name) && !empty($password) && !is_numeric($user_name)) 
                 {
-                    $query = "SELECT * FROM users WHERE user_name = '$user_name' LIMIT 1"; 
-                    $result = mysqli_query($con, $query);
+                    
+                    $result = db_read($con, "users", "user_name", $user_name);
             
-                    if ($result && mysqli_num_rows($result) > 0) # verification de le username n'est pas déjà pris 
+                    if ($result && mysqli_num_rows($result) > 0) # verification de que l'username n'est pas déjà pris 
                     { 
                         echo '<p style="color: red; font-size: 17px;">Ce nom d\'utilisateur est déjà pris !</p>';
                     } 
-                    else {
+                    else 
+                    {
                         
-                        $query = "INSERT INTO users (user_name, password) VALUES ('$user_name', '$password')";
-                        mysqli_query($con, $query); # Sauvegarde des résultats dans la base de donnée
-             
-                        header("Location: login.php");
+                        
+                        #mysqli_query($con, $query); # Sauvegarde des résultats dans la base de donnée
+
+                        db_create($con, 'users', 'user_name', $user_name);
+                        $user_data = get_user_data($con, $user_name);
+                        db_update($con, "users", "password", "id", $password, $user_data['id']);
+
+                        $user_data = get_user_data($con, $user_name);
+
+                        $_SESSION['user_id'] = $user_data['id'];
+                        header("Location: ../index.php");
                         die;
-                }
+                    }
+
                 }else
                 {
                     echo '<p style ="color: red; font-size: 17px ;
