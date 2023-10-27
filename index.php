@@ -37,6 +37,7 @@ $user_data = check_login($con);
                 <div class = 'contact'>
                 <li>Adresse : Avenue Lepart 404a, Kernel</li>
                 <li>Téléphone : 021 404 04 04</li>
+                <li><br>Ceci est un site de démonstration,<br>aucune commande ne sera réellement<br>prise en compte.</li>
                 </ul>
                 </div>
             <?php
@@ -64,8 +65,8 @@ $user_data = check_login($con);
 </header>
 
 
-<h1> Pessay, la boutique d'ordinateurs conçus par vous, pour vous. </h1>
-<h3> Choisissez une catégorie et commencez à construire votre ordinateur ! </h3>
+<h1> Bienvenue sur Pessay, la boutique d'ordinateurs conçus pour vous. </h1>
+<h3> Cliquez sur une catégorie et commencez à choisir votre ordinateur ! </h3>
 <h3> Nous nous chargeons de monter vos machines et de les livrer chez vous.</h3>
 
 
@@ -114,18 +115,18 @@ echo '<div class="product">';
 
 
 ###### Test Produit 3 ######
-$product3_data = get_product_data($con, "3");
-if (!empty($product3_data))
-{
-    $image_data = $product3_data["image"]; 
-    $image_b64 = base64_encode($image_data);
-    echo '<a href = "/product/product3.php"> <img src="data:image/jpeg;base64,' . $image_b64 . '" alt="Image du produit" width="200" height="200*(16/9)">
-    <h3>'. $product3_data['nom'].' </h3>
-    <p>'.$product3_data['description'].' </p> </a>';
-}
-else{
-    echo "Error: Données produit non disponible";
-}
+#$product3_data = get_product_data($con, "3");
+#if (!empty($product3_data))
+#{
+#    $image_data = $product3_data["image"]; 
+#    $image_b64 = base64_encode($image_data);
+#    echo '<a href = "/product/product3.php"> <img src="data:image/jpeg;base64,' . $image_b64 . '" alt="Image du produit" width="200" height="200*(16/9)">
+#    <h3>'. $product3_data['nom'].' </h3>
+#    <p>'.$product3_data['description'].' </p> </a>';
+#}
+#else{
+#    echo "Error: Données produit non disponible";
+#}
 ######Produit 3 ######
 echo '</div>';
 echo '</div>';

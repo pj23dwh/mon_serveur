@@ -21,11 +21,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['delete_account']))
 
     
     $user_id = $user_data['id'];
-    db_update($con, "users", "user_name", "id", $new_username, $user_id);
-    db_update($con, "users", "password", "id", $new_password, $user_id);
+
+    if ($new_username != $user_data['user_name']){
+        $result = db_read($con, "users", "user_name", $new_username);
+
+        if ($result && mysqli_num_rows($result) > 0) # verification de que l'username n'est pas déjà pris 
+        { 
+            echo '<p style="color: red; font-size: 17px; position: relative; left:43%;">Ce nom d\'utilisateur est déjà pris !</p>';
+        }
+
+        else {
+            db_update($con, "users", "user_name", "id", $new_username, $user_id);
+            db_update($con, "users", "password", "id", $new_password, $user_id);
+        
+            header("Location: index.php");
+            die;
+        }
+    }
+
+    else {
+        db_update($con, "users", "user_name", "id", $new_username, $user_id);
+        db_update($con, "users", "password", "id", $new_password, $user_id);
     
-    header("Location: index.php");
-    die;
+        header("Location: index.php");
+        die;
+    }
 }
 
 if (isset($_POST['delete_account']))

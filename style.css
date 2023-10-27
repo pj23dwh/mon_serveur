@@ -236,5 +236,16 @@ header {
   background-color: transparent;
   text-align: center;
   font-size: 1.1em;
+}
 
+.command_feedback {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  left: 40%;
+  padding: 5em;
+  height: 1em; 
+  color: white;
+  text-align: center;
 }
