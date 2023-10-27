@@ -27,38 +27,99 @@ function check_login($con) # vérifie si l'utilisateur est connecté ou non (ave
 
 function db_read($con, $table, $colonne, $data)
 {
-    $query = "SELECT * from $table where $colonne = '$data' limit 1";
-    $result = mysqli_query($con, $query);
-    if (!$result) {
-        echo "Erreur lors de la lecture de la base de donnée : " . mysqli_error($con);
+    $query = "SELECT * from $table where $colonne = ? limit 1";
+    $stmt = mysqli_prepare($con, $query);
+
+    if ($stmt){
+        mysqli_stmt_bind_param($stmt, "s", $data); #liaison des valeurs aux espaces réservés
+
+        #exécution de la requête préparée
+        if (mysqli_stmt_execute($stmt)){ #cette ligne vérifie que l'éxecution de la requête renvoie true
+            $result = mysqli_stmt_get_result($stmt);
+            mysqli_stmt_close($stmt); #fermeture de la requête préparée
+            return $result;
+        }
+        else {
+            echo "Erreur lors de la lecture de la base de donnée: " . mysqli_error($con);
+            mysqli_stmt_close($stmt);
+            return false;
+        }
     }
-    return $result;
+    else {
+        echo "Erreur lors de la lecture de la base de donnée: " . mysqli_error($con);
+        return false;
+    }
 }
 
 function db_update($con, $table, $colonne, $db_id, $data, $id)
 {
-    $query = "UPDATE $table set $colonne = '$data' WHERE $db_id = '$id'";
-    $result = mysqli_query($con, $query);
-    if (!$result) {
-        echo "Erreur lors de la mise à jour de la base de donnée : " . mysqli_error($con);
+    $query = "UPDATE $table set $colonne = ? WHERE $db_id = ?";
+    $stmt = mysqli_prepare($con, $query);
+
+    if ($stmt){
+        mysqli_stmt_bind_param($stmt, "si", $data, $id); 
+        
+        if (mysqli_stmt_execute($stmt)){ 
+            mysqli_stmt_close($stmt);
+            return true;
+        }
+        else {
+            echo "Erreur lors de la mise à jour de la base de donnée : " . mysqli_error($con);
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    }
+    else {
+        echo "Erreur lors de la mise à jour de la base de donnée: " . mysqli_error($con);
+        return false;
     }
 }
 
 function db_delete($con, $table, $colonne, $data )
 {
-    $query = "DELETE from $table WHERE $colonne = '$data'";
-    $result = mysqli_query($con, $query);
-    if (!$result) {
-        echo "Erreur lors de la suppression des données : " . mysqli_error($con);
+    $query = "DELETE from $table WHERE $colonne = ?";
+    $stmt = mysqli_prepare($con, $query);
+
+    if ($stmt){
+        mysqli_stmt_bind_param($stmt, "s", $data);
+        
+        if (mysqli_stmt_execute($stmt)){ 
+            mysqli_stmt_close($stmt);
+            return true;
+        }
+        else {
+            echo "Erreur lors de la suppression des données: " . mysqli_error($con);
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    }
+    else {
+        echo "Erreur lors de la suppression des données: " . mysqli_error($con);
+        return false;
     }
 }
 
 function db_create($con, $table, $colonne , $data)
 {
-    $query = "INSERT into $table ($colonne) VALUES ('$data')";
-    $result = mysqli_query($con, $query);
-    if (!$result) {
-        echo "Erreur lors de l'insertion des données : " . mysqli_error($con);
+    $query = "INSERT into $table ($colonne) VALUES (?)";
+    $stmt = mysqli_prepare($con, $query);
+
+    if ($stmt){
+        mysqli_stmt_bind_param($stmt, "s", $data); 
+        
+        if (mysqli_stmt_execute($stmt)){ 
+            mysqli_stmt_close($stmt);
+            return true;
+        }
+        else {
+            echo "Erreur lors de l'insertion des données: " . mysqli_error($con);
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    }
+    else {
+        echo "Erreur lors de l'insertion des données: " . mysqli_error($con);
+        return false;
     }
 }
 
