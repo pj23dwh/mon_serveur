@@ -2,7 +2,7 @@
 # données de connexion au serveur:
 $dbhost = "localhost";
 $dbuser = "root";
-$dbpass = "citeam23";
+$dbpass = "your_password";
 $dbname = "siteweb";
 
 if(!$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))
