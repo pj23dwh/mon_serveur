@@ -5,7 +5,7 @@ include("/var/www/html/login/functions.php");
 
 $user_data = check_login($con);
 
-
+#Attention: Cette page n'a finalement pas été utilisée dans le projet final.
 ?>
 
 <!DOCTYPE html>
