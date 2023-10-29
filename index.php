@@ -66,7 +66,7 @@ $user_data = check_login($con);
 
 
 <h1> Bienvenue sur Pessay, la boutique d'ordinateurs conçus pour vous. </h1>
-<h3> Cliquez sur une catégorie et commencez à choisir votre ordinateur ! </h3>
+<h3> Cliquez sur un produit et séléctionnez une de ces variantes ! </h3>
 <h3> Nous nous chargeons de monter vos machines et de les livrer chez vous.</h3>
 
 
