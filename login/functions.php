@@ -12,7 +12,7 @@ function check_login($con) # vérifie si l'utilisateur est connecté ou non (ave
         {
             $user_data = mysqli_fetch_assoc($result); # enregistrement des data utilisateurs récupérées de la base de donnée sous "$user_data"
             $_SESSION["user_is_connected"] = true; # activation de la variable bool $_SESSION
-            return $user_data; # envoi des data fraichement récupérées vers la page utilisant la fonciton "check_login($con)"
+            return $user_data; # envoi des data fraichement récupérées vers la page utilisant la fonction "check_login($con)"
         }
     }
     
