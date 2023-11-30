@@ -58,8 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['commande']))
         #exécution de la requête préparée
         if (mysqli_stmt_execute($stmt)){ #cette ligne vérifie que l'éxecution de la requête renvoie true
             header("Location: /product/validation.php");
-            #die;
-            echo "wtf";
+            die;
         }
         else {
             echo "<h1 style='color:red; max-width: 200em; font-size: 3em; position: absolute; left: 35%; text-align:center; padding: 3em; padding-left: 5em;'>Erreur lors de la commande : " . mysqli_stmt_error($stmt) . "</h1>";
